@@ -1,0 +1,11 @@
+body {
+    color: darkblue;
+    background-color: honeydew;
+    border: 2px;
+}
+
+section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px;
+}

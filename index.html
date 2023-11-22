@@ -5,34 +5,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Cookies and Ethics</title>
     <link rel="stylesheet" href="style.css">
+    <!--<script src = "cookies.js"></script>-->
 </head>
 <body>
-    <h1>Cookies</h1>
     <script>
 
     function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
-  
-  function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        let expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    } 
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
-    return "";
-  }
-  
-  function checkCookie() {
+    
+    function checkCookie() {
     let user = getCookie("username");
     if (user != "") {
       alert("Welcome again " + user);
@@ -42,9 +43,16 @@
         setCookie("username", user, 365);
       }
     }
-  }
+    }
 
-  console.log(document.cookie)
+    checkCookie();
+    console.log(document.cookie); 
     </script>
-</body>
+    
+    <section> 
+        <h1>Cookies</h1>
+        <p>Cookies are used by web browsers for storing information about users between browsing sessions. Cookies are short strings of information that are saved on a web server. When any web browser is used to request a webpage from the user’s end, the associated cookies are included with the request. These cookies are filled with user information and stored on the web server.</p>
+        <p>Cookies have a few benefits; they add a layer of convenience for frequent visitors of any website, storing their recent searches and habits etc. They also provide convenience for the programmers, allowing them to collect important information about their users. The downside of cookies is that they can be very invasive, attempting to store more information than users may be comfortable with sharing. Cookies can also be used to track user activity across multiple websites. The use of cookies is only ethical with the informed, consent of the user; ‘necessary’ cookies are unethical because they don’t respect this consent.</p>    
+    </section>
+    </body>
 </html>
